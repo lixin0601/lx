@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+     <router-link to="/hot">热点</router-link>
+     <router-link to="/edu">教育</router-link>
+     <router-link to="/muc">音乐</router-link>
+     <router-link to="/mus">社会</router-link>
+     <router-link to="/tv">体育</router-link>
+     <router-view></router-view>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+    //创建路由组件
+    var hot = {
+        template: '<div>这是热点</div>'
+    };
+    var edu = {
+        template: '<div>这是教育</div>'
+    };
+    var  muc= {
+        template: `<div><router-link to="/mus/pop">流行</router-link>
+                   <router-link to="/mus/rouck">摇滚</router-link>
+                   <router-link to="/minyao">民谣</router-link>
+                   <router-view></router-view></div>`
+    };
+
+var pop = {
+    template: '<div>流行音乐</div>'
+};
+var rouck = {
+    template: '<div>摇滚音乐</div>'
+}
+
+    var router = new VueRouter({
+        routes: [
+            {path: '/hot', component: hot},
+            {path: '/edu', component: edu},
+            {path: '/muc', component: muc, children:[
+                {path: 'pop', component: pop},
+                {path: 'rouck', component: rouck},
+              
+            ]}
+            
+        ]
+    })
+    //2.创建路由对象
+    </script>
+</body>
+</html>
